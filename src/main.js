@@ -6,6 +6,8 @@ import store from './store'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
+import VueSwal from 'vue-swal';
+
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
@@ -18,8 +20,10 @@ Vue.use(Vuetify);
 
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
+  // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+
+Vue.use(VueSwal);
 
 // import Vuetify from 'vuetify';
 // Vue.use(Vuetify);
@@ -30,6 +34,6 @@ Vue.use(IconsPlugin)
 new Vue({
   router,
   store,
-  vuetify : new Vuetify(),
+  vuetify: new Vuetify(),
   render: h => h(App)
 }).$mount('#app')
