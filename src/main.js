@@ -8,6 +8,9 @@ import 'vuetify/dist/vuetify.min.css'
 
 import VueSwal from 'vue-swal';
 
+import VueFormly from 'vue-formly'
+import VueFormlyBootstrap from 'vue-formly-bootstrap'
+
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
@@ -24,6 +27,9 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.use(VueSwal);
+
+Vue.use(VueFormly)
+Vue.use(VueFormlyBootstrap)
 
 // import Vuetify from 'vuetify';
 // Vue.use(Vuetify);

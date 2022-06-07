@@ -11,14 +11,14 @@
               #{{ pokemon.number }}
             </v-card-subtitle>
             <v-row class="tipos-chip">
-            <v-col v-for="type in pokemon.types" :key="type">
-              <v-chip color="red" text-color="white">
+            <v-col>
+              <v-chip class="mr-3" v-for="type in pokemon.types" :key="type" color="red" text-color="white">
                 {{ type }}
               </v-chip>
             </v-col>
-            <v-col class="btnCarrito">
-              <v-btn @click="addCart">
-                Add to cart
+            <v-col>
+              <v-btn v-bind:to="`/details/${pokemon.number}`" >
+                More...
               </v-btn>
             </v-col>
             </v-row>
@@ -106,7 +106,85 @@ export default {
             "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png",
             "score": 0,
             "uid": "629e3e5a657f7639515084de"
-        }
+        },
+        {
+            "number": 81,
+            "name": "magnemite",
+            "description": "",
+            "height": 3,
+            "weight": 60,
+            "abilities": [
+                "magnet-pull",
+                "sturdy",
+                "analytic"
+            ],
+            "price": 8566,
+            "types": [
+                "electric",
+                "steel"
+            ],
+            "moves": [
+                "headbutt",
+                "tackle",
+                "take-down",
+                "double-edge"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png",
+            "score": 0,
+            "uid": "629e3ec2657f763951508552"
+        },
+        {
+            "number": 82,
+            "name": "magneton",
+            "description": "",
+            "height": 10,
+            "weight": 600,
+            "abilities": [
+                "magnet-pull",
+                "sturdy",
+                "analytic"
+            ],
+            "price": 4936,
+            "types": [
+                "electric",
+                "steel"
+            ],
+            "moves": [
+                "headbutt",
+                "tackle",
+                "take-down",
+                "double-edge"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png",
+            "score": 0,
+            "uid": "629e3ec4657f763951508554"
+        },
+        {
+            "number": 83,
+            "name": "farfetchd",
+            "description": "",
+            "height": 8,
+            "weight": 150,
+            "abilities": [
+                "keen-eye",
+                "inner-focus",
+                "defiant"
+            ],
+            "price": 5563,
+            "types": [
+                "normal",
+                "flying"
+            ],
+            "moves": [
+                "razor-wind",
+                "swords-dance",
+                "cut",
+                "gust"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png",
+            "score": 0,
+            "uid": "629e3ec6657f763951508556"
+        },
       ],
   }),
   methods: {

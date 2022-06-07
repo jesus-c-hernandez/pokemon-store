@@ -35,7 +35,7 @@
       <v-btn icon>
         <v-icon x-large>mdi-magnify</v-icon>
       </v-btn>
-      <v-btn icon x-large>
+      <v-btn icon x-large v-bind:to="{ name: 'login' }">
         <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
@@ -43,6 +43,9 @@
     <v-main>
       <router-view></router-view>
     </v-main>
+    <v-footer color="#FAFAFA" app>
+      <span>&copy; 2022</span>
+    </v-footer>
   </v-app>
 </template>
 

@@ -11,14 +11,14 @@
               #{{ pokemon.number }}
             </v-card-subtitle>
             <v-row class="tipos-chip">
-            <v-col v-for="type in pokemon.types" :key="type">
-              <v-chip color="red" text-color="white">
+            <v-col>
+              <v-chip class="mr-3" v-for="type in pokemon.types" :key="type" color="red" text-color="white">
                 {{ type }}
               </v-chip>
             </v-col>
-            <v-col class="btnCarrito">
-              <v-btn @click="addCart">
-                Add to cart
+            <v-col>
+              <v-btn v-bind:to="`/details/${pokemon.number}`" >
+                More...
               </v-btn>
             </v-col>
             </v-row>

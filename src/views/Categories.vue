@@ -2,8 +2,8 @@
     <v-container>
       <v-row>
         <v-col sm="3" class="pa-2" v-for="type in types" :key="type">
-          <v-card class="pa-1" color="#B4AFAE">
-            <v-img height="250" :src="'/tipos/ice.png'"></v-img>
+          <v-card class="pa-2" color="#B4AFAE">
+            <img height="250" src="../assets/tipos/ice.png"/>
             <v-card-title>
               {{ type }}
             </v-card-title>
