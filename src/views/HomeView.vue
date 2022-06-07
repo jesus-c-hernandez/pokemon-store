@@ -15,7 +15,7 @@
       <v-list dense nav>
         <v-list-item v-for="item in items" :key="item.title" link>
           <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon >{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -27,14 +27,16 @@
 
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>PokeShopee</v-toolbar-title>
+      <v-toolbar-title>PokeShopee</v-toolbar-title>
 
-      <div class="navbar">
+      <v-spacer></v-spacer>
 
-        <v-btn class="ma-2" dark>
-          <v-icon>{{ icons.mdiAccount }}</v-icon>
-        </v-btn>
-      </div>
+      <v-btn icon>
+        <v-icon x-large>mdi-magnify</v-icon>
+      </v-btn>
+      <v-btn icon x-large>
+        <v-icon>mdi-account</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -44,7 +46,7 @@
 </template>
 
 <script>
-import { mdiAccount } from "@mdi/js";
+// import { mdiAccount, mdiCart, mdiStore  } from "@mdi/js";
 
 export default {
   data() {
@@ -52,14 +54,11 @@ export default {
       drawer: null,
       items: [
         { title: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Categories", icon: "mdi-image" },
-        { title: "Shopping cart", icon: "mdi-help-box" },
-        { title: "Us", icon: "mdi-help-box" },
+        { title: "Categories", icon: "mdi-view-list" },
+        { title: "Shopping cart", icon: "mdi-cart" },
+        { title: "Us", icon: "mdi-store" },
       ],
       right: null,
-      icons: {
-        mdiAccount,
-      },
     };
   },
 };
@@ -73,6 +72,6 @@ export default {
 }
 
 .navbar {
-    text-align: end !important;
+  text-align: end !important;
 }
 </style>
