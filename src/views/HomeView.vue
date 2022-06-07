@@ -1,77 +1,213 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6"> PokeShopee </v-list-item-title>
-          <v-list-item-subtitle class="f-yellow">
-            Capturalos a todos aqui
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list dense nav>
-        <v-list-item v-for="item in items" :key="item.title" link>
-          <v-list-item-icon>
-            <v-icon >{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>PokeShopee</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon x-large>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn icon x-large>
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <!--  -->
-    </v-main>
-  </v-app>
+    <v-container>
+      <v-row>
+        <v-col sm="4" class="pa-3" v-for="pokemon in pokemons" :key="pokemon.number">
+          <v-card class="pa-1" color="#B4AFAE">
+            <v-img height="250" :src="pokemon.img"></v-img>
+            <v-card-title>
+              {{ pokemon.name }}
+            </v-card-title>
+            <v-card-subtitle>
+              #{{ pokemon.number }}
+            </v-card-subtitle>
+            <v-row class="tipos-chip">
+            <v-col>
+              <v-chip class="mr-3" v-for="type in pokemon.types" :key="type" color="red" text-color="white">
+                {{ type }}
+              </v-chip>
+            </v-col>
+            <v-col>
+              <v-btn v-bind:to="`/details/${pokemon.number}`" >
+                More...
+              </v-btn>
+            </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
 </template>
-
 <script>
-// import { mdiAccount, mdiCart, mdiStore  } from "@mdi/js";
-
 export default {
-  data() {
-    return {
-      drawer: null,
-      items: [
-        { title: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Categories", icon: "mdi-view-list" },
-        { title: "Shopping cart", icon: "mdi-cart" },
-        { title: "Us", icon: "mdi-store" },
+  name: 'Home',
+  data: () => ({
+    pokemons: [
+        {
+            "number": 21,
+            "name": "spearow",
+            "description": "Good endurance",
+            "height": 3,
+            "weight": 20,
+            "abilities": [
+                "keen-eye",
+                "sniper"
+            ],
+            "price": 8848,
+            "types": [
+                "normal",
+                "flying"
+            ],
+            "moves": [
+                "razor-wind",
+                "whirlwind",
+                "fly",
+                "headbutt"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/21.png",
+            "score": 0,
+            "uid": "629e3e59657f7639515084da"
+        },
+        {
+            "number": 22,
+            "name": "fearow",
+            "description": "Often lost in thought",
+            "height": 12,
+            "weight": 380,
+            "abilities": [
+                "keen-eye",
+                "sniper"
+            ],
+            "price": 1706,
+            "types": [
+                "normal",
+                "flying"
+            ],
+            "moves": [
+                "razor-wind",
+                "whirlwind",
+                "fly",
+                "headbutt"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png",
+            "score": 0,
+            "uid": "629e3e59657f7639515084dc"
+        },
+        {
+            "number": 23,
+            "name": "ekans",
+            "description": "Hates to lose",
+            "height": 20,
+            "weight": 69,
+            "abilities": [
+                "intimidate",
+                "shed-skin",
+                "unnerve"
+            ],
+            "price": 1177,
+            "types": [
+                "poison"
+            ],
+            "moves": [
+                "bind",
+                "slam",
+                "headbutt",
+                "body-slam"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png",
+            "score": 0,
+            "uid": "629e3e5a657f7639515084de"
+        },
+        {
+            "number": 81,
+            "name": "magnemite",
+            "description": "",
+            "height": 3,
+            "weight": 60,
+            "abilities": [
+                "magnet-pull",
+                "sturdy",
+                "analytic"
+            ],
+            "price": 8566,
+            "types": [
+                "electric",
+                "steel"
+            ],
+            "moves": [
+                "headbutt",
+                "tackle",
+                "take-down",
+                "double-edge"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png",
+            "score": 0,
+            "uid": "629e3ec2657f763951508552"
+        },
+        {
+            "number": 82,
+            "name": "magneton",
+            "description": "",
+            "height": 10,
+            "weight": 600,
+            "abilities": [
+                "magnet-pull",
+                "sturdy",
+                "analytic"
+            ],
+            "price": 4936,
+            "types": [
+                "electric",
+                "steel"
+            ],
+            "moves": [
+                "headbutt",
+                "tackle",
+                "take-down",
+                "double-edge"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png",
+            "score": 0,
+            "uid": "629e3ec4657f763951508554"
+        },
+        {
+            "number": 83,
+            "name": "farfetchd",
+            "description": "",
+            "height": 8,
+            "weight": 150,
+            "abilities": [
+                "keen-eye",
+                "inner-focus",
+                "defiant"
+            ],
+            "price": 5563,
+            "types": [
+                "normal",
+                "flying"
+            ],
+            "moves": [
+                "razor-wind",
+                "swords-dance",
+                "cut",
+                "gust"
+            ],
+            "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png",
+            "score": 0,
+            "uid": "629e3ec6657f763951508556"
+        },
       ],
-      right: null,
-    };
-  },
-};
+  }),
+  methods: {
+    addCart() {
+      this.$swal(
+        '¡Excelente!',
+        'Se a agregado al carrito correctamente',
+        'success',
+      );
+    }
+  }
+}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.f-yellow {
-  color: #ffd700 !important;
-  font-weight: 700;
+.tipos-chip{
+  padding: 0px;
+  margin: 0%;
+  width: 100%;
 }
 
-.navbar {
-  text-align: end !important;
+.btnCarrito{
+  padding: 10px;
+  margin: 1%;
+  width: 100%;
 }
 </style>

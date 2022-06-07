@@ -1,33 +1,81 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.8.95/css/materialdesignicons.css">
-    </nav>
-    <router-view/>
-  </div>
+  <v-app id="inspire">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.8.95/css/materialdesignicons.css">
+    <v-navigation-drawer v-model="drawer" app>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6"> PokeShopee </v-list-item-title>
+          <v-list-item-subtitle class="f-yellow">
+            Capturalos a todos aqui
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense nav>
+        <v-list-item v-for="item in items" :key="item.title" :to="item.link" link>
+          <v-list-item-icon>
+            <v-icon >{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>PokeShopee</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon x-large>mdi-magnify</v-icon>
+      </v-btn>
+      <v-btn icon x-large v-bind:to="{ name: 'login' }">
+        <v-icon>mdi-account</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+    <v-footer color="#FAFAFA" app>
+      <span>&copy; 2022</span>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+// import { mdiAccount, mdiCart, mdiStore  } from "@mdi/js";
+
+export default {
+  data() {
+    return {
+      drawer: null,
+      items: [
+        { title: "Dashboard", icon: "mdi-view-dashboard", link: "/" },
+        { title: "Categories", icon: "mdi-view-list", link: "/categories" },
+        { title: "Shopping cart", icon: "mdi-cart", link: "/cart" },
+        { title: "Us", icon: "mdi-store", link: "/about" },
+      ],
+      right: null,
+    };
+  },
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.f-yellow {
+  color: #ffd700 !important;
+  font-weight: 700;
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.navbar {
+  text-align: end !important;
 }
 </style>
