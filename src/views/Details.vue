@@ -105,11 +105,36 @@ export default {
         });
     },
     addCart() {
-      this.$swal(
-        '¡Excelente!',
-        'Se a agregado al carrito correctamente',
-        'success',
-      );
+      const token = window.localStorage.getItem('token');
+      const email = window.localStorage.getItem('email');
+      const id = window.localStorage.getItem('id');
+      if (token && email && id) {
+          return axios({
+              method: 'put',
+              data: {
+                pokeId: this.id,
+                pokeName: this.pokemon.name,
+                price: this.pokemon.price,
+                img: this.pokemon.img,
+              },
+              url: `https://pokemon-store-api.herokuapp.com/api/cart/${id}`,
+              headers: {
+                "x-token": window.localStorage.getItem('token'),
+              }
+            }).then((result) => {
+                this.$swal(
+                  '¡Excelente!',
+                  'Se a agregado al carrito correctamente',
+                  'success',
+                );
+                console.log(result);
+                // localStorage.setItem('token', result.data.token);
+                // this.$router.push({ name: 'login' });
+              }).catch((error) => {
+                const mensaje = error.response.data;
+                this.$swal('Error', `${mensaje}`, 'error');
+              });
+      }
     }
   }
 }

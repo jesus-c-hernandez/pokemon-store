@@ -96,8 +96,12 @@ export default {
     logOut() {
       window.localStorage.clear();
       bus.$emit('refreshLogin');
+      // window.location.reload();
       this.$router.push({ name: 'login' });
     },
+    verifyCart() {
+      
+    }
   }
 };
 </script>
