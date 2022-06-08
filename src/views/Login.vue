@@ -62,6 +62,8 @@ export default {
   },
   methods: {
     async login() {
+      console.log(this.model.email);
+      console.log(this.model.password);
       return axios({
         method: 'post',
         data: {
@@ -84,7 +86,7 @@ export default {
         .catch((error) => {
           const mensaje = error;
           this.$swal('Error', `${mensaje}`, 'error');
-          this.$router.push({ name: 'Login' });
+          this.$router.push({ name: 'login' });
         });
     },
     async isLogged() {

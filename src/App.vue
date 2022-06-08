@@ -58,7 +58,6 @@
 </template>
 
 <script>
-// import { mdiAccount, mdiCart, mdiStore  } from "@mdi/js";
 import bus from './bus';
 export default {
   data:() => ({
@@ -89,6 +88,7 @@ export default {
       console.log(token, id, email);
       if (token && email && id) {
         this.idUsser = id;
+        bus.$emit('refreshCart')
       } else {
         this.idUsser = null;
       }
@@ -99,9 +99,6 @@ export default {
       // window.location.reload();
       this.$router.push({ name: 'login' });
     },
-    verifyCart() {
-      
-    }
   }
 };
 </script>
