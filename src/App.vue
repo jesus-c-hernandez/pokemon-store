@@ -32,9 +32,9 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon x-large>mdi-magnify</v-icon>
-      </v-btn>
+      </v-btn> -->
       <!-- <v-btn icon x-large v-bind:to="{ name: 'login' }">
         <v-icon>mdi-account</v-icon>
       </v-btn> -->

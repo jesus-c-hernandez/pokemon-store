@@ -12,7 +12,7 @@
           <h4>{{pokemon.description}}</h4>
         </v-row>
         <v-row class="mr-5">
-          <v-card color="#2EE0E8">
+          <v-card color="#58D68D">
             <v-row>
               <div class="col layout">
                 <div>
@@ -175,6 +175,8 @@ export default {
                     const mensaje = error.response.data;
                     this.$swal('Error', `${mensaje}`, 'error');
                   });
+          } else {
+            this.$swal('Error', 'Tiene que iniciar sesión para continuar', 'error');
           }
         });
       

@@ -37,7 +37,7 @@ export default {
     nRandom: 0
   }),
   mounted() {
-    this.isLogged();
+    this.getPokemonsDash();
   },
   methods: {
     async getPokemonsDash() {
@@ -47,7 +47,7 @@ export default {
         url: `https://pokemon-store-api.herokuapp.com/api/pokemons?from=${this.nRandom}`,
         headers: {
           'Content-Type': 'application/json',
-          "x-token": window.localStorage.getItem('token'),
+          // "x-token": window.localStorage.getItem('token'),
         },
       }).then((res) => {
           // this.$swal('Felicidades!!', 'Está listo para iniciar!', 'success');

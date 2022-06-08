@@ -89,7 +89,8 @@ import bus from '../bus';
             // this.$router.push({ name: 'home' });
           });
       } else {
-        this.$router.push({ name: 'login' });
+        this.$swal('Error', 'Tiene que iniciar sesión para continuar', 'error');
+        this.$router.push({ name: 'home' });
       }
     },
     async getPokemonsbyId(pokeId) {
