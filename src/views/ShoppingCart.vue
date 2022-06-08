@@ -50,40 +50,47 @@ import bus from '../bus';
     }, 
     methods: {
     async getCartbyUsser() {
-      return axios({
-        method: 'get',
-        url: `https://pokemon-store-api.herokuapp.com/api/cart/${window.localStorage.getItem('id')}`,
-        // url: `https://pokemon-store-api.herokuapp.com/api/cart/629b2b0bf441625c07a54b9c`,
-        headers: {
-          "x-token": window.localStorage.getItem('token'),
-        }
-      }).then((res) => {
-          // this.$swal('Felicidades!!', 'Está listo para iniciar!', 'success');
-          // bus.$emit('refreshUser');
-          // console.log(res.data.cart.pokemons);
-          const arrPokemons = res.data.cart.pokemons;
-          // let pokemonInfo = '';
-          arrPokemons.forEach(e => {
-            // bus.$emit('refreshPokemon', e.pokeId);
-            this.getPokemonsbyId(e.pokeId)
-            const obj = {
-              Pokemon: e.pokeId + " - " + e.pokeName,
-              quant: e.quant,
-              price: e.price,
-              subtotal: e.quant * e.price
-            }
-            this.total += obj.subtotal;
-            this.pokemons.push(obj)
+      const token = window.localStorage.getItem('token');
+      const email = window.localStorage.getItem('email');
+      const id = window.localStorage.getItem('id');
+      if (token && email && id) {
+        return axios({
+          method: 'get',
+          url: `https://pokemon-store-api.herokuapp.com/api/cart/${window.localStorage.getItem('id')}`,
+          // url: `https://pokemon-store-api.herokuapp.com/api/cart/629b2b0bf441625c07a54b9c`,
+          headers: {
+            "x-token": window.localStorage.getItem('token'),
+          }
+        }).then((res) => {
+            // this.$swal('Felicidades!!', 'Está listo para iniciar!', 'success');
+            // bus.$emit('refreshUser');
+            // console.log(res.data.cart.pokemons);
+            const arrPokemons = res.data.cart.pokemons;
+            // let pokemonInfo = '';
+            arrPokemons.forEach(e => {
+              // bus.$emit('refreshPokemon', e.pokeId);
+              this.getPokemonsbyId(e.pokeId)
+              const obj = {
+                Pokemon: e.pokeId + " - " + e.pokeName,
+                quant: e.quant,
+                price: e.price,
+                subtotal: e.quant * e.price
+              }
+              this.total += obj.subtotal;
+              this.pokemons.push(obj)
+            });
+            // this.pokemons = res.data.cart;
+            // this.$router.push({ name: 'home' });
+          })
+          .catch((error) => {
+            const mensaje = error.response.data.msg;
+            console.log(error.response.data.msg);
+            this.$swal('Error', `${mensaje}`, 'error');
+            // this.$router.push({ name: 'home' });
           });
-          // this.pokemons = res.data.cart;
-          // this.$router.push({ name: 'home' });
-        })
-        .catch((error) => {
-          const mensaje = error.response.data.msg;
-          console.log(error.response.data.msg);
-          this.$swal('Error', `${mensaje}`, 'error');
-          // this.$router.push({ name: 'home' });
-        });
+      } else {
+        this.$router.push({ name: 'login' });
+      }
     },
     async getPokemonsbyId(pokeId) {
       return axios({
