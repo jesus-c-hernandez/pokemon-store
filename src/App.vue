@@ -35,16 +35,16 @@
       <v-btn icon>
         <v-icon x-large>mdi-magnify</v-icon>
       </v-btn>
-      <v-btn icon x-large v-bind:to="{ name: 'login' }">
+      <!-- <v-btn icon x-large v-bind:to="{ name: 'login' }">
         <v-icon>mdi-account</v-icon>
-      </v-btn>
+      </v-btn> -->
       <b-dropdown size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
         <template #button-content>
           &#x1f464;
         </template>
-        <b-dropdown-item>Log In</b-dropdown-item>
-        <b-dropdown-item>Usser Perfil</b-dropdown-item>
-        <b-dropdown-item>Log Out</b-dropdown-item>
+        <b-dropdown-item  v-bind:to="{ name: 'login' }" v-if="!idUsser" >Log In</b-dropdown-item>
+        <b-dropdown-item v-bind:to="{ name: 'perfil' }" v-if="idUsser" >Usser Perfil</b-dropdown-item>
+        <b-dropdown-item @click="logOut" v-if="idUsser" >Log Out</b-dropdown-item>
       </b-dropdown>
     </v-app-bar>
 
@@ -59,10 +59,9 @@
 
 <script>
 // import { mdiAccount, mdiCart, mdiStore  } from "@mdi/js";
-
+import bus from './bus';
 export default {
-  data() {
-    return {
+  data:() => ({
       drawer: null,
       items: [
         { title: "Dashboard", icon: "mdi-view-dashboard", link: "/" },
@@ -71,8 +70,39 @@ export default {
         { title: "Us", icon: "mdi-store", link: "/about" },
       ],
       right: null,
-    };
+      idUsser: ''
+  }), mounted() {
+    this.verify();
+    this.escucharEventos();
   },
+  methods: {
+    escucharEventos() {
+      bus.$on('refreshLogin', () => {
+        this.verify();
+      });
+    },
+    verify() {
+      console.log('isLogged', this.isLogged);
+      const token = window.localStorage.getItem('token');
+      const email = window.localStorage.getItem('email');
+      const id = window.localStorage.getItem('id');
+      console.log(token, id, email);
+      if (token && email && id) {
+        this.idUsser = id;
+      } else {
+        this.idUsser = null;
+      }
+    },
+    logOut() {
+      window.localStorage.clear();
+      bus.$emit('refreshLogin');
+      // window.location.reload();
+      this.$router.push({ name: 'login' });
+    },
+    verifyCart() {
+      
+    }
+  }
 };
 </script>
 

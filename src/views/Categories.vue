@@ -4,7 +4,7 @@
         <v-col sm="3" class="pa-2" v-for="type in objTypes" :key="type.name">
           <v-card class="pa-2" color="#B4AFAE">
             <!-- <img height="250" :src="type.img"/> -->
-              <v-img height="250" :src="type.img"></v-img>
+              <v-img height="300" :src="type.img"></v-img>
             <v-card-title>
               {{ type.name }}
             </v-card-title>
@@ -25,51 +25,52 @@ export default {
     return {
       objTypes: [{
         name: "rock",
-        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/tipos/ice.png?token=GHSAT0AAAAAABVI2NPWBRWFJ4TFJUKR2IPQYVAGUJQ",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/rock.png",
       },
       {
         name: "water",
-        img: "../assets/types/water.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/water.png",
       },
       {
         name: "electric",
-        img: "../assets/types/electric.png",
+        // img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/electric.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/electric.png",
       },
       {
         name: "grass",
-        img: "../assets/types/grass.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/grass.png",
       },
       {
         name: "poison",
-        img: "../assets/types/rock.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/poison.png",
       },
       {
         name: "psychic",
-        img: "../assets/types/rock.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/psychic.png",
       },
       {
         name: "fire",
-        img: "../assets/types/rock.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/fire.png",
       },
       {
         name: "ground",
-        img: "../assets/types/rock.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/ground.png",
       },
       {
         name: "ice",
-        img: "../assets/types/rock.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/ice.png",
       },
       {
         name: "fighting",
-        img: "../assets/types/rock.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/fighting.png",
       },
       {
         name: "ghost",
-        img: "../assets/types/rock.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/ghost.png",
       },
       {
         name: "dragon",
-        img: "../assets/types/rock.png",
+        img: "https://raw.githubusercontent.com/pollito210/pokemon-store/master/src/assets/types/dragon.png",
       },
       ],
       types: [

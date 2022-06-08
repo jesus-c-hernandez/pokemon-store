@@ -37,7 +37,7 @@ export default {
     nRandom: 0
   }),
   mounted() {
-    this.getPokemonsDash();
+    this.isLogged();
   },
   methods: {
     async getPokemonsDash() {
@@ -61,6 +61,16 @@ export default {
           this.$swal('Error', `${mensaje}`, 'error');
           this.$router.push({ name: 'home' });
         });
+    },
+    isLogged() {
+      const token = window.localStorage.getItem('token');
+      const email = window.localStorage.getItem('email');
+      const id = window.localStorage.getItem('id');
+      if (token && email && id) {
+        this.getPokemonsDash();
+      } else {
+        this.$router.push({ name: 'login' });
+      }
     }
   }
 }
