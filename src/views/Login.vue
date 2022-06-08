@@ -3,7 +3,7 @@
     <div class="contenedor">
       <div class="formulario">
         <formly-form :form="form" :model="model" :fields="fields">
-          <v-btn>Submit</v-btn>
+          <v-btn @click="login">Submit</v-btn>
           <v-btn v-bind:to="{ name: 'userRegister' }">New Usser</v-btn>
         </formly-form>
       </div>
@@ -11,29 +11,30 @@
   </form>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   name: 'CategoriesItems',
-  data () {
-  return {
-      form: {},
+  data: () => ({
+    form: {},
       model: {
-          userName: '',
+          email: '',
           password: '',
       },
       fields: [
           {
-              key: 'name',
+              key: 'email',
               type: 'input',
               required: true,
               wrapper: '<div class="col-md-12"></div>',
               templateOptions: {
-                  label: 'Username / Email',
-                  placeholder: 'Username Vaid',
+                  label: 'Email',
+                  placeholder: 'email Vaid',
               },
               validators: {
                 length: {
                   expression: 'model[ field.key ].length > 0 ',
-                  message: 'You must enter a UserName'
+                  message: 'You must enter a email'
                 }
               }
           },
@@ -49,12 +50,37 @@ export default {
               validators: {
                 length: {
                   expression: 'model[ field.key ].length > 0 ',
-                  message: 'You must enter a UserName'
+                  message: 'You must enter a Valid Password'
                 }
               }
           },
       ],
-  }
+  }),
+  methods: {
+    async login() {
+      return axios({
+        method: 'post',
+        data: {
+          email: this.model.email,
+          password: this.model.password,
+        },
+        url: 'https://pokemon-store-api.herokuapp.com/api/login',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => {
+          window.localStorage.setItem('token', res.data.token);
+          window.localStorage.setItem('email', res.data.email);
+          this.$swal('Felicidades!!', 'Está listo para iniciar!', 'success');
+          // bus.$emit('refreshUser');
+          this.$router.push({ name: 'home' });
+        })
+        .catch((error) => {
+          const mensaje = error;
+          this.$swal('Error', `${mensaje}`, 'error');
+          this.$router.push({ name: 'Login' });
+        });
+    }
   }
 }
 </script>

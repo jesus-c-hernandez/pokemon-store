@@ -3,17 +3,19 @@
     <div class="contenedor">
       <div class="formulario">
         <formly-form :form="form" :model="model" :fields="fields">
-          <v-btn>Submit</v-btn>
         </formly-form>
+        <v-btn @click="addUsser">Submit</v-btn>
       </div>
     </div>
   </form>
 </template>
+
 <script>
+import axios from 'axios';
+
 export default {
   name: 'CategoriesItems',
-  data () {
-  return {
+  data: () => ({
       form: {},
       model: {
           name: '',
@@ -21,7 +23,8 @@ export default {
           password: '',
           confirmPassword: '',
           email: '',
-          address: ''
+          address: '',
+          phone: ''
       },
       fields: [
           {
@@ -124,8 +127,67 @@ export default {
                 }
               }
           },
+          {
+              key: 'phone',
+              type: 'input',
+              required: true,
+              wrapper: '<div class="col-md-12"></div>',
+              templateOptions: {
+                  label: 'Phone Number',
+                  placeholder: 'Username Vaid'
+              },
+              validators: {
+                length: {
+                  expression: 'model[ field.key ].length > 5 ',
+                  message: 'You must enter more than 5 characters'
+                }
+              }
+          },
       ],
-  }
+  }), 
+  methods: {
+    async addUsser() {
+      // console.log(this.$refs.form);
+      // if (this.$refs.form.validate()) {
+      //   // acciones si es válida la forma (formulario)
+      // const body= {
+      //       name: this.model.name,
+      //       lastName: this.model.lastName,
+      //       password: this.model.password,
+      //       email: this.model.email,
+      //       address: this.model.address,
+      //     }
+      // console.log(body);
+        return axios({
+          method: 'post',
+          data: {
+            name: this.model.name,
+            lastName: this.model.lastName,
+            password: this.model.password,
+            email: this.model.email,
+            address: this.model.address,
+            phone: this.model.phone,
+          },
+          url: 'https://pokemon-store-api.herokuapp.com/api/users',
+        }).then((result) => {
+            this.$swal(
+              '¡Excelente!',
+              'Ha sido registrado satisfactoriamente',
+              'success',
+            );
+            // console.log(result.data.token);
+            localStorage.setItem('token', result.data.token);
+            this.$router.push({ name: 'login' });
+          }).catch((error) => {
+            const mensaje = error.response.data;
+            this.$swal('Error', `${mensaje}`, 'error');
+          });
+      // }
+      // return true;
+    },
+    limpiar() {
+      this.$refs.form.reset();
+    },
   }
 }
 </script>
@@ -136,11 +198,10 @@ export default {
   position: relative;
 }
 .formulario{
-  width: 70%;
-  height: 70%;
+  width: 60%;
+  height: 800px;
   position: absolute;
-  top: 50px;
+  top: 20px;
   left: 15%;
-  
 }
 </style>
