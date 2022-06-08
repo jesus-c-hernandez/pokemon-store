@@ -14,7 +14,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'CategoriesItems',
+  name: 'Login',
   data: () => ({
     form: {},
       model: {
@@ -56,6 +56,9 @@ export default {
           },
       ],
   }),
+  mounted() {
+    this.isLogged();
+  },
   methods: {
     async login() {
       return axios({
@@ -70,7 +73,8 @@ export default {
         },
       }).then((res) => {
           window.localStorage.setItem('token', res.data.token);
-          window.localStorage.setItem('email', res.data.email);
+          window.localStorage.setItem('email', this.model.email);
+          window.localStorage.setItem('id', res.data.user.uid);
           this.$swal('Felicidades!!', 'Está listo para iniciar!', 'success');
           // bus.$emit('refreshUser');
           this.$router.push({ name: 'home' });
@@ -80,6 +84,14 @@ export default {
           this.$swal('Error', `${mensaje}`, 'error');
           this.$router.push({ name: 'Login' });
         });
+    },
+    async isLogged() {
+      const token = window.localStorage.getItem('token');
+      const email = window.localStorage.getItem('email');
+      const id = window.localStorage.getItem('id');
+      if (token && email && id) {
+        this.$router.push({ name: 'perfil' });
+      }
     }
   }
 }
