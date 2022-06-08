@@ -36,7 +36,7 @@ export default {
     pokemons: []
   }),
   mounted() {
-    this.isLogged();
+    this.getPokemonsbyCat()
   },
   methods: {
     async getPokemonsbyCat() {
@@ -44,7 +44,7 @@ export default {
         method: 'get',
         url: `https://pokemon-store-api.herokuapp.com/api/pokemons/type/${this.$route.params.id}`,
         headers: {
-          "x-token": window.localStorage.getItem('token'),
+          // "x-token": window.localStorage.getItem('token'),
         }
       }).then((res) => {
           // this.$swal('Felicidades!!', 'Está listo para iniciar!', 'success');
