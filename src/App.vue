@@ -38,6 +38,14 @@
       <v-btn icon x-large v-bind:to="{ name: 'login' }">
         <v-icon>mdi-account</v-icon>
       </v-btn>
+      <b-dropdown size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
+        <template #button-content>
+          &#x1f464;
+        </template>
+        <b-dropdown-item>Log In</b-dropdown-item>
+        <b-dropdown-item>Usser Perfil</b-dropdown-item>
+        <b-dropdown-item>Log Out</b-dropdown-item>
+      </b-dropdown>
     </v-app-bar>
 
     <v-main>

@@ -4,7 +4,7 @@
       <div class="formulario">
         <formly-form :form="form" :model="model" :fields="fields">
         </formly-form>
-        <v-btn @click="addUsser">Submit</v-btn>
+        <v-btn @click="updateUsser">Update Perfil</v-btn>
       </div>
     </div>
   </form>
@@ -16,12 +16,11 @@ import axios from 'axios';
 export default {
   name: 'CategoriesItems',
   data: () => ({
+      id: '',
       form: {},
       model: {
           name: '',
           lastName: '',
-          password: '',
-          confirmPassword: '',
           email: '',
           address: '',
           phone: ''
@@ -29,7 +28,6 @@ export default {
       fields: [
           {
               key: 'name',
-              default: 'Hola',
               type: 'input',
               required: true,
               wrapper: '<div class="col-md-12"></div>',
@@ -61,55 +59,13 @@ export default {
               }
           },
           {
-              key: 'password',
-              type: 'input',
-              required: true,
-              wrapper: '<div class="col-md-12"></div>',
-              templateOptions: {
-                  label: 'Password',
-                  type: 'password'
-              },
-              validators: {
-                length: {
-                  expression: 'model[ field.key ].length > 0 ',
-                  message: 'You must enter a Valid Password'
-                }
-              }
-          },
-          {
-              key: 'confirmPassword',
-              type: 'input',
-              required: true,
-              wrapper: '<div class="col-md-12"></div>',
-              templateOptions: {
-                  label: 'Confirm Password',
-                  type: 'password'
-              },
-              validators: {
-                sameAsPass: {
-                    expression: function(field, model){
-                        //assume that 'password' is a previously defined field in the schema
-                        console.log(model[ field.key ]);
-                        return model[ field.key ] === model.password;
-                    },
-                    message: 'Your passwords must match'
-                },
-              }
-          },
-          {
               key: 'email',
               type: 'input',
               required: true,
               wrapper: '<div class="col-md-12"></div>',
               templateOptions: {
                   label: 'Email',
-                  placeholder: 'Username Vaid'
-              },
-              validators: {
-                length: {
-                  expression: 'model[ field.key ].length > 3 ',
-                  message: 'You must enter more than 3 characters'
-                }
+                  disabled: false
               }
           },
           {
@@ -150,37 +106,29 @@ export default {
     this.default();
   },
   methods: {
-    async addUsser() {
-      // console.log(this.$refs.form);
-      // if (this.$refs.form.validate()) {
-      //   // acciones si es válida la forma (formulario)
-      // const body= {
-      //       name: this.model.name,
-      //       lastName: this.model.lastName,
-      //       password: this.model.password,
-      //       email: this.model.email,
-      //       address: this.model.address,
-      //     }
-      // console.log(body);
+    async updateUsser() {
         return axios({
-          method: 'post',
+          method: 'put',
           data: {
             name: this.model.name,
             lastName: this.model.lastName,
-            password: this.model.password,
             email: this.model.email,
             address: this.model.address,
             phone: this.model.phone,
           },
-          url: 'https://pokemon-store-api.herokuapp.com/api/users',
+          url: `https://pokemon-store-api.herokuapp.com/api/users/${this.id}`,
+          headers: {
+          'Content-Type': 'application/json',
+          "x-token": window.localStorage.getItem('token'),
+          },
         }).then((result) => {
             this.$swal(
               '¡Excelente!',
-              'Ha sido registrado satisfactoriamente',
+              'Se ha actualizado exitosamente',
               'success',
             );
-            // console.log(result.data.token);
-            localStorage.setItem('token', result.data.token);
+            // // console.log(result.data.token);
+            // localStorage.setItem('token', result.data.token);
             this.$router.push({ name: 'login' });
           }).catch((error) => {
             const mensaje = error.response.data;
@@ -192,6 +140,31 @@ export default {
     limpiar() {
       this.$refs.form.reset();
     },
+    async default() {
+      this.id = window.localStorage.getItem('id');
+      return axios({
+        method: 'get',
+        url: `https://pokemon-store-api.herokuapp.com/api/users/${this.id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          "x-token": window.localStorage.getItem('token'),
+        },
+      }).then((res) => {
+          console.log(res.data.user);
+          this.model.name = res.data.user.name
+          this.model.lastName = res.data.user.lastName
+          this.model.address = res.data.user.address
+          this.model.email = res.data.user.email
+          this.model.phone = res.data.user.phone
+        })
+        .catch((error) => {
+          const mensaje = error;
+          this.$swal('Error', `${mensaje}`, 'error');
+          this.$router.push({ name: 'home' });
+        });
+
+      
+    }
   }
 }
 </script>

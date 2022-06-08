@@ -31,25 +31,28 @@
 import axios from 'axios';
 
 export default {
-  name: 'CategoriesItems',
+  name: 'Home',
   data: () => ({
-    pokemons: []
+    pokemons: [],
+    nRandom: 0
   }),
   mounted() {
-    this.getPokemonsbyCat()
+    this.getPokemonsDash();
   },
   methods: {
-    async getPokemonsbyCat() {
+    async getPokemonsDash() {
+      this.nRandom = Math.floor(Math.random() * (120 - 0)) + 0;
       return axios({
         method: 'get',
-        url: `https://pokemon-store-api.herokuapp.com/api/pokemons/type/${this.$route.params.id}`,
+        url: `https://pokemon-store-api.herokuapp.com/api/pokemons?from=${this.nRandom}`,
         headers: {
+          'Content-Type': 'application/json',
           "x-token": window.localStorage.getItem('token'),
-        }
+        },
       }).then((res) => {
           // this.$swal('Felicidades!!', 'Está listo para iniciar!', 'success');
           // bus.$emit('refreshUser');
-          console.log(res.data);
+          // console.log(res.data);
           this.pokemons = res.data.data;
           // this.$router.push({ name: 'home' });
         })
@@ -68,6 +71,7 @@ export default {
   margin: 0%;
   width: 100%;
 }
+
 .btnCarrito{
   padding: 10px;
   margin: 1%;

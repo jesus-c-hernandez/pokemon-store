@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from '../views/Home.vue'
 import Categories from '../views/Categories.vue'
 import CategoriesItems from '../views/CategoriesItems.vue'
 import ShoppingCart from '../views/ShoppingCart.vue'
 import Login from '../views/Login.vue'
 import UserRegister from '../views/UserRegister.vue'
 import Details from '../views/Details.vue'
+import Perfil from '../views/Perfil.vue'
 
 Vue.use(VueRouter)
 
 const routes = [{
     path: '/',
     name: 'home',
-    component: HomeView
+    component: Home
   },
   {
     path: '/about',
@@ -35,7 +36,7 @@ const routes = [{
     component: Categories
   },
   {
-    path: '/categoriesItems',
+    path: '/categoriesItems/:id',
     name: 'categoriesItems',
     component: CategoriesItems
   },
@@ -53,6 +54,11 @@ const routes = [{
     path: '/details/:id',
     name: 'details',
     component: Details
+  },
+  {
+    path: '/perfil/',
+    name: 'perfil',
+    component: Perfil
   },
 ]
 
