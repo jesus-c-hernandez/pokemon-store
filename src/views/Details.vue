@@ -19,13 +19,13 @@
                   <v-card-title class="text-h5 font-weight-bold">
                     Height
                   </v-card-title>
-                  <v-card-text class="text-h6">{{ pokemon.height }} cm</v-card-text>
+                  <v-card-text class="text-h6">{{ pokemon.height / 10 }} m</v-card-text>
                 </div>
                 <div>
                   <v-card-title class="text-h5 font-weight-bold">
                     Weight
                   </v-card-title>
-                  <v-card-text class="text-h6">{{ pokemon.weight }} g</v-card-text>
+                  <v-card-text class="text-h6">{{ pokemon.weight / 10 }} kg</v-card-text>
                 </div>
                 <div>
                   <v-card-title class="text-h5 font-weight-bold">

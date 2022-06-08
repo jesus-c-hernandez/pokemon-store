@@ -12,6 +12,7 @@
 </template>
 <script>
 import axios from 'axios';
+import bus from '../bus';
 
 export default {
   name: 'Login',
@@ -76,8 +77,9 @@ export default {
           window.localStorage.setItem('email', this.model.email);
           window.localStorage.setItem('id', res.data.user.uid);
           this.$swal('Felicidades!!', 'Está listo para iniciar!', 'success');
-          // bus.$emit('refreshUser');
+          bus.$emit('refreshLogin');
           this.$router.push({ name: 'home' });
+          
         })
         .catch((error) => {
           const mensaje = error;
