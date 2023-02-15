@@ -42,7 +42,7 @@ export default {
     async getPokemonsbyCat() {
       return axios({
         method: 'get',
-        url: `https://pokemon-store-api.herokuapp.com/api/pokemons/type/${this.$route.params.id}`,
+        url: `https://poke-store-api.onrender.com/api/pokemons/type/${this.$route.params.id}`,
         headers: {
           // "x-token": window.localStorage.getItem('token'),
         }

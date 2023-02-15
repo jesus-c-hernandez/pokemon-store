@@ -9,7 +9,7 @@ async function addUsser() {
       address: "Avenida Velverde #56",
       phone: "87144556699",
     },
-    url: 'https://pokemon-store-api.herokuapp.com/api/users',
+    url: 'https://poke-store-api.onrender.com/api/users',
   }).then((result) => {
     return result
   }).catch((error) => {

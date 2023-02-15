@@ -44,7 +44,7 @@ export default {
       this.nRandom = Math.floor(Math.random() * (120 - 0)) + 0;
       return axios({
         method: 'get',
-        url: `https://pokemon-store-api.herokuapp.com/api/pokemons?from=${this.nRandom}`,
+        url: `https://poke-store-api.onrender.com/api/pokemons?from=${this.nRandom}`,
         headers: {
           'Content-Type': 'application/json',
           // "x-token": window.localStorage.getItem('token'),

@@ -70,7 +70,7 @@ export default {
           email: this.model.email,
           password: this.model.password,
         },
-        url: 'https://pokemon-store-api.herokuapp.com/api/login',
+        url: 'https://poke-store-api.onrender.com/api/login',
         headers: {
           'Content-Type': 'application/json',
         },

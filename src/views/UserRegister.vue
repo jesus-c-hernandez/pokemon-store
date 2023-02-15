@@ -172,7 +172,7 @@ export default {
             address: this.model.address,
             phone: this.model.phone,
           },
-          url: 'https://pokemon-store-api.herokuapp.com/api/users',
+          url: 'https://poke-store-api.onrender.com/api/users',
         }).then((result) => {
             this.$swal(
               '¡Excelente!',

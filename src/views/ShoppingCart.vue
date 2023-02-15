@@ -56,8 +56,8 @@ import bus from '../bus';
       if (token && email && id) {
         return axios({
           method: 'get',
-          url: `https://pokemon-store-api.herokuapp.com/api/cart/${window.localStorage.getItem('id')}`,
-          // url: `https://pokemon-store-api.herokuapp.com/api/cart/629b2b0bf441625c07a54b9c`,
+          url: `https://poke-store-api.onrender.com/api/cart/${window.localStorage.getItem('id')}`,
+          // url: `https://poke-store-api.onrender.com/api/cart/629b2b0bf441625c07a54b9c`,
           headers: {
             "x-token": window.localStorage.getItem('token'),
           }
@@ -96,7 +96,7 @@ import bus from '../bus';
     async getPokemonsbyId(pokeId) {
       return axios({
         method: 'get',
-        url: `https://pokemon-store-api.herokuapp.com/api/pokemon/${pokeId}`,
+        url: `https://poke-store-api.onrender.com/api/pokemon/${pokeId}`,
         headers: {
           "x-token": window.localStorage.getItem('token'),
         }
@@ -120,7 +120,7 @@ import bus from '../bus';
     async buyCart() {
       return axios({
           method: 'put',
-          url: `https://pokemon-store-api.herokuapp.com/api/cart/buy/${window.localStorage.getItem('id')}`,
+          url: `https://poke-store-api.onrender.com/api/cart/buy/${window.localStorage.getItem('id')}`,
           headers: {
             "x-token": window.localStorage.getItem('token'),
           }

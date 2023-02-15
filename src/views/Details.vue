@@ -91,7 +91,7 @@ export default {
     async getPokemon(){
       return axios({
         method: 'get',
-        url: `https://pokemon-store-api.herokuapp.com/api/pokemon/${this.$route.params.id}`,
+        url: `https://poke-store-api.onrender.com/api/pokemon/${this.$route.params.id}`,
         headers: {
           "x-token": window.localStorage.getItem('token'),
         }
@@ -107,8 +107,8 @@ export default {
     addCart() {
       return axios({
         method: 'get',
-        url: `https://pokemon-store-api.herokuapp.com/api/cart/${window.localStorage.getItem('id')}`,
-        // url: `https://pokemon-store-api.herokuapp.com/api/cart/629b2b0bf441625c07a54b9c`,
+        url: `https://poke-store-api.onrender.com/api/cart/${window.localStorage.getItem('id')}`,
+        // url: `https://poke-store-api.onrender.com/api/cart/629b2b0bf441625c07a54b9c`,
         headers: {
           "x-token": window.localStorage.getItem('token'),
         }
@@ -125,7 +125,7 @@ export default {
                     price: this.pokemon.price,
                     img: this.pokemon.img,
                   },
-                  url: `https://pokemon-store-api.herokuapp.com/api/cart/${id}`,
+                  url: `https://poke-store-api.onrender.com/api/cart/${id}`,
                   headers: {
                     "x-token": window.localStorage.getItem('token'),
                   }
@@ -158,7 +158,7 @@ export default {
                     price: this.pokemon.price,
                     img: this.pokemon.img,
                   },
-                  url: `https://pokemon-store-api.herokuapp.com/api/cart/`,
+                  url: `https://poke-store-api.onrender.com/api/cart/`,
                   headers: {
                     "x-token": window.localStorage.getItem('token'),
                   }

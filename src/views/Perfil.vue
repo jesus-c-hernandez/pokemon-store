@@ -116,7 +116,7 @@ export default {
             address: this.model.address,
             phone: this.model.phone,
           },
-          url: `https://pokemon-store-api.herokuapp.com/api/users/${this.id}`,
+          url: `https://poke-store-api.onrender.com/api/users/${this.id}`,
           headers: {
           'Content-Type': 'application/json',
           "x-token": window.localStorage.getItem('token'),
@@ -144,7 +144,7 @@ export default {
       this.id = window.localStorage.getItem('id');
       return axios({
         method: 'get',
-        url: `https://pokemon-store-api.herokuapp.com/api/users/${this.id}`,
+        url: `https://poke-store-api.onrender.com/api/users/${this.id}`,
         headers: {
           'Content-Type': 'application/json',
           "x-token": window.localStorage.getItem('token'),
